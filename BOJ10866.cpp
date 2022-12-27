@@ -85,18 +85,10 @@ public:
         }
         return poppedvalue;
     }
-    int front() {
-        return (_size > 0 ? _front->value : -1);
-    }
-    int back() {
-        return (_size > 0 ? _back->value : -1);
-    }
-    deqNODE* frontNODE() {
-        return _front;
-    }
-    deqNODE* backNODE() {
-        return _back;
-    }
+    int front() { return (_size > 0 ? _front->value : -1); }
+    int back() { return (_size > 0 ? _back->value : -1); }
+    deqNODE* frontNODE() { return _front; }
+    deqNODE* backNODE() { return _back; }
 };
 
 void printdeq(deq* thedeq) {
