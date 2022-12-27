@@ -40,7 +40,6 @@ public:
     void push_front(int newvalue) {
         _size++;
         deqNODE* newNODE = (deqNODE*)malloc(sizeof(deqNODE));
-        memset(newNODE, 0, sizeof(deqNODE));
         newNODE->value = newvalue;
         if (_size == 1) { // 첫 추가: front와 back을 동일하게 지정
             newNODE->prev = NULL;
