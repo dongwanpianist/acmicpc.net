@@ -130,16 +130,28 @@ inline void debug_print(vector<town> &towns, bool after_dijkstra) {
     cout << (after_dijkstra ? "After Dijkstra calculation:\n" : "Input data:\n");
     for (uint16_t i = 1; i < towns.size(); ++i) {
         cout << " - " << (i==1 ? cyan("Start #1") : "Town #" + to_string(i)) << " (" << towns[i].location.h << ", " << towns[i].location.w << "):\t";
-        if (after_dijkstra) cout << "shortest distance from start: " << towns[i].totaldistance << " \t";
+        if (after_dijkstra) cout << "shortest distance from start: " << (i==1 ? cyan(to_string(towns[1].totaldistance)) : to_string(towns[i].totaldistance)) << " \t";
         cout << "{ ";
-        for (uint16_t ii = 0; ii < towns[i].routes.size(); ++ii) cout << "[" << towns[i].routes[ii].destination << "](" << towns[i].routes[ii].distance << ") ";
+        for (uint16_t ii = 0; ii < towns[i].routes.size(); ++ii) {
+            if (towns[i].routes[ii].destination == 1)
+                cout << cyan("[" + to_string(towns[i].routes[ii].destination) + "](" + to_string(towns[i].routes[ii].distance) + ") ");
+            else if (towns[i].routes[ii].destination == 0)
+                cout << magenta("[" + to_string(towns[i].routes[ii].destination) + "](" + to_string(towns[i].routes[ii].distance) + ") ");
+            else
+                cout << "[" + to_string(towns[i].routes[ii].destination) + "](" + to_string(towns[i].routes[ii].distance) + ") ";
+        }
         cout << "}\n";
     }
-    cout << " - Goal #0 (" << towns[0].location.h << ", " << towns[0].location.w << "):\t";
-    if (after_dijkstra) cout << "shortest distance from start: " << towns[0].totaldistance << "\n";
+    cout << " - " << magenta("Goal #0") << " (" << towns[0].location.h << ", " << towns[0].location.w << "):\t";
+    if (after_dijkstra) cout << "shortest distance from start: " << magenta(to_string(towns[0].totaldistance)) << "\n";
     else {
         cout << "{ ";
-        for (uint16_t ii = 0; ii < towns[0].routes.size(); ++ii) cout << "[" << towns[0].routes[ii].destination << "](" << towns[0].routes[ii].distance << ") ";
+        for (uint16_t ii = 0; ii < towns[0].routes.size(); ++ii) {
+            if (towns[0].routes[ii].destination == 1)
+                cout << cyan("[" + to_string(towns[0].routes[ii].destination) + "](" + to_string(towns[0].routes[ii].distance) + ") ");
+            else
+                cout << "[" + to_string(towns[0].routes[ii].destination) + "](" + to_string(towns[0].routes[ii].distance) + ") ";
+        }
         cout << "}\n";
     }
     cout << "=======================\n";
