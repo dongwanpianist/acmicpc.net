@@ -1,0 +1,3 @@
+#include <iostream>
+#include <vector>
+using namespace std;typedef uint32_t n;vector<n> m;int v;n mt=0xFFFFFFFFU,mh=0;void h_check(n h){int d=0,u=0;for(n &p:m){if(p>h)d+=(p-h);else if(p<h)u+=(h-p);}if(v+d-u<0)return;int t=u+(d*2);if(mt>t){ mt=t;mh=h;}}bool f(){for(n i=1;i<m.size();++i)if(m[i]!=m[i-1])return 0;return 1;}int main(){ios_base::sync_with_stdio(0);cin.tie(0);n l,l2;cin>>l>>l2>>v;l*=l2;m.resize(l);n b=0xFFFFFFFFU,t=0;while(l--){cin>>m[l];if(b>m[l])b=m[l];if(t<m[l])t=m[l];}if(f()){mt=0;mh=m[0];}else{for(n c=t;c>=b;--c){h_check(c);if(c==b)break;}}cout<<mt<<" "<<mh;}
